@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es-PR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#17352c" />
+  <title>Panel de interesados | Villas de Caguas Real</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/admin.css" />
+  <script defer src="/admin.js"></script>
+</head>
+<body>
+  <header class="admin-header"><div class="wrap head-inner"><a href="/" class="logo">VILLAS DE <b>CAGUAS REAL</b></a><a href="/" class="back">← Ver sitio web</a></div></header>
+  <main class="wrap admin-main">
+    <div class="admin-heading"><p>GESTIÓN COMERCIAL · ACCESO PRIVADO</p><h1>Panel de interesados</h1><span>Contactos registrados, fuentes de campañas y seguimiento a VIG.</span></div>
+    <section class="login-card" id="login-card"><h2>Ingresa tu clave administrativa</h2><p>Los registros de compradores solo pueden consultarse con una clave configurada de forma privada en Vercel.</p><form id="login-form"><label for="admin-key">Clave de acceso</label><input id="admin-key" type="password" autocomplete="current-password" required placeholder="Clave configurada en Vercel" /><button type="submit">Abrir panel →</button></form><div id="login-message" class="alert" role="status"></div></section>
+    <section id="dashboard" hidden>
+      <div class="tools"><div><label for="search">Buscar prospecto</label><input type="search" id="search" placeholder="Nombre, teléfono, municipio, correo..." /></div><div><label for="status-filter">Etapa comercial</label><select id="status-filter"><option value="">Todos los estados</option><option>Nuevo interesado</option><option>Contactado</option><option>Interesado activo</option><option>Enviado a VIG</option><option>Precualificado</option><option>Seleccionó unidad</option><option>Opción/depósito</option><option>Cierre</option></select></div><button id="reload" class="button-outline" type="button">Actualizar</button><button id="export-csv" class="button-outline" type="button">Exportar CSV ↓</button><button id="logout" class="button-outline" type="button">Salir</button></div>
+      <div class="stats"><div><strong id="total-count">—</strong><span>Registros visibles</span></div><div><strong id="vig-count">—</strong><span>Visitaron VIG</span></div><div><strong id="prequalified-count">—</strong><span>Precualificados*</span></div><div><strong id="conversion-count">—</strong><span>Porcentaje que abrió VIG</span></div></div>
+      <p class="smallnote">*La etapa «Precualificado» la actualiza el equipo manualmente. Un clic en VIG <strong>no confirma</strong> que el comprador completó o aprobó una solicitud.</p>
+      <div class="table-wrap"><table><thead><tr><th>Fecha / etapa</th><th>Prospecto</th><th>Contacto</th><th>Perfil</th><th>Procedencia</th><th>VIG</th><th>Cambiar etapa</th></tr></thead><tbody id="lead-rows"></tbody></table><p id="empty-state" hidden>No se encontraron registros con estos criterios.</p></div>
+      <div class="dashboard-foot"><span id="data-message" role="status"></span><span>Se muestran hasta 2,000 registros recientes. Exporta CSV para trabajar en Excel.</span></div>
+    </section>
+  </main>
+  <footer class="admin-footer">Villas de Caguas Real · Área privada de uso interno · No compartir datos de prospectos sin autorización.</footer>
+</body>
+</html>
