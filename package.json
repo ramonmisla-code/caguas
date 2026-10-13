@@ -1,0 +1,13 @@
+{
+  "name": "villas-de-caguas-real",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de registro de prospectos y precualificación para Villas de Caguas Real",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "start:local": "node server-local.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
