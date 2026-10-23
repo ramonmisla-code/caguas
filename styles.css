@@ -47,3 +47,16 @@
 .interior-preview-card figcaption{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:#7d8178;margin-top:9px}
 @media(max-width:900px){.interior-preview-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:650px}.interior-preview-card img{height:125px}}
 @media(max-width:700px){.interior-preview{margin-top:36px;padding-top:28px}.interior-preview-header{display:block}.interior-preview-header p{margin-top:12px}.interior-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.interior-preview-card img{height:112px}}
+
+/* Tres datos confirmados por residencia: 3 habitaciones, 2½ baños y 1,877 ft². */
+.intro-strip-inner{grid-template-columns:repeat(3,minmax(0,1fr));padding-bottom:31px}
+.intro-strip-inner>div:nth-child(3){border-right:0}
+@media(max-width:700px){
+  .intro-strip-inner{grid-template-columns:repeat(3,minmax(0,1fr));padding:25px 0;row-gap:0}
+  .intro-strip-inner>div{padding:0 7px}
+  .intro-strip-inner>div:nth-child(2){border-right:1px solid #d9d4ca}
+  .intro-strip-inner>div:nth-child(3){padding-left:7px;border-right:0}
+  .intro-strip strong{font-size:clamp(20px,5vw,30px);white-space:nowrap}
+  .intro-strip strong i{font-size:11px}
+  .intro-strip-inner>div span{font-size:9px;letter-spacing:.04em}
+}

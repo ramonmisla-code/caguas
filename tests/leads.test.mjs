@@ -45,6 +45,15 @@ test('Siete fotografías e imágenes y secciones requeridas en sitio',()=>{
   assert.ok(html.includes(filename),filename);
  }
 });
+test('Superficie y distribución definitivas sin cifras estimadas antiguas', () => {
+ const root=resolve(import.meta.dirname,'..');
+ const html=readFileSync(resolve(root,'index.html'),'utf8');
+ assert.match(html,/1,877/);
+ assert.match(html,/Superficie total/);
+ assert.match(html,/Dos baños y medio/);
+ assert.match(html,/Tres habitaciones/);
+ assert.doesNotMatch(html,/1,425|±288|Terraza estimada|Interior estimado|Datos de distribución preliminares/i);
+});
 test('Backend guarda prospecto antes de VIG, consulta y actualiza etapa',async()=>{
  const availability = res(); await health(req('GET'),availability);
  assert.equal(availability.body.registrationEnabled,true);

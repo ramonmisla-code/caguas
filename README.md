@@ -8,7 +8,7 @@
 
 - Landing page editorial de alta gama (versión premium revisada), adaptable a celular, tableta y escritorio.
 - Las **siete imágenes que proporcionaste**, convertidas a WebP para acelerar la descarga.
-- Secciones: portada, concepto, datos preliminares, distribución, arquitectura, entorno, fotografías, ubicación, lista de interés, financiamiento y preguntas frecuentes.
+- Secciones: portada, concepto, características de las residencias, distribución, arquitectura, entorno, fotografías, ubicación, lista de interés, financiamiento y preguntas frecuentes.
 - Registro de prospectos con nombre, teléfono, correo, municipio, contacto preferido, plazo para comprar, interés en financiamiento, comentarios y consentimientos.
 - Captura automática de fuente de anuncio `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, referidor y página de entrada.
 - Registra el clic hacia [VIG Mortgage](https://prequalify.vigpr.com/?lang=es) **después** de haber guardado el prospecto. No significa solicitud hipotecaria terminada ni aprobada.
@@ -77,7 +77,7 @@ Cuando solo está configurado Google Sheets, consulta los registros directamente
 
 ## Notas de fidelidad y comercialización
 
-Las fotografías del desarrollo original (incluyendo piscina, golf y canchas) no garantizan derecho de uso a sus instalaciones. La fachada es conceptual. La delimitación azul del terreno es ilustrativa y no sustituye el levantamiento topográfico ni plano registrado. Las superficies interiores (`±1,425 ft²`) y terraza (`±288 ft²`) son estimaciones previas, no un metraje certificado. Las condiciones y aprobación de financiamiento corresponden a VIG Mortgage, no al promotor.
+Las fotografías del desarrollo original (incluyendo piscina, golf y canchas) no garantizan derecho de uso a sus instalaciones. La fachada es conceptual. La delimitación azul del terreno es ilustrativa y no sustituye el levantamiento topográfico ni plano registrado. Cada residencia cuenta con **tres habitaciones, dos baños y medio y 1,877 pies cuadrados totales**. Las condiciones y aprobación de financiamiento corresponden a VIG Mortgage, no al promotor.
 
 ### Dominio sugerido
 
