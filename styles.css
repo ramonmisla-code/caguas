@@ -98,3 +98,10 @@
 .extra-exterior figcaption{font:normal 20px Georgia,serif;color:#263c31;margin-top:12px}
 .extra-exterior figcaption small{display:block;font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#768178;margin-top:5px}
 @media(max-width:700px){.extra-exterior{padding:24px 18px 34px}.extra-exterior img{max-height:240px}}
+
+/* Avisos legales discretos en el pie de página */
+.footer-legal{border-top:1px solid rgba(199,163,106,.44);padding-top:29px;padding-bottom:28px;margin-top:36px}
+.footer-legal h2{font:600 11px/1.6 Arial,sans-serif;text-transform:uppercase;letter-spacing:.18em;color:#d3b986;margin:0 0 17px}
+.footer-legal p{font-size:11px;line-height:1.85;color:rgba(239,243,237,.7);max-width:1050px;margin:0 0 11px}
+.footer-legal p strong{font-weight:600;color:rgba(248,246,235,.9)}
+@media(max-width:700px){.footer-legal{margin-top:26px;padding-top:25px;padding-bottom:20px}.footer-legal p{font-size:10px;line-height:1.8}}
