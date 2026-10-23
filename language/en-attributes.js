@@ -44,3 +44,17 @@ Object.assign(window.CRV_TRANSLATIONS, {
   "Caguas Real Villas | Una nueva forma de vivir Caguas": "Caguas Real Villas | A New Way to Live in Caguas",
   "Una nueva generación de residencias rodeadas de naturaleza. Conoce el proyecto y regístrate para recibir información.": "A new generation of residences surrounded by nature. Explore the project and register to receive more information."
 });
+
+Object.assign(window.CRV_TRANSLATIONS, {
+  "Solicitud no autorizada.": "Unauthorized request.",
+  "Solicitud no válida.": "Invalid request.",
+  "Completa los campos requeridos y acepta el aviso de privacidad.": "Complete the required fields and accept the privacy notice.",
+  "Revisa los campos de selección.": "Please review the selected options.",
+  "Demasiados intentos. Intenta nuevamente en una hora.": "Too many attempts. Please try again in one hour.",
+  "Demasiados intentos. Intenta nuevamente más tarde.": "Too many attempts. Please try again later.",
+  "El registro todavía no está habilitado. Intenta más adelante.": "Registration is not available yet. Please try again later.",
+  "No se pudo completar el registro en este momento. Intenta nuevamente.": "Your registration could not be completed at this time. Please try again.",
+  "Método no permitido.": "Method not allowed.",
+  "Seleccionar idioma del sitio": "Select Website Language",
+  "Español": "Spanish"
+});
