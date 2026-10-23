@@ -152,3 +152,19 @@ h1 em,h2 em,h3 em{font-family:'Playfair Display',Georgia,serif;font-weight:400}
   .site-header .menu-toggle{min-width:34px;padding:6px}
   .footer .brand-words strong{font-size:16px}
 }
+
+/* Mobile refinements */
+@media(max-width:700px){
+html{scroll-padding-top:76px}body{overflow-x:clip}.shell{width:calc(100% - 32px)}
+.site-header .brand{min-width:0;flex:1}.site-header .brand-words strong{white-space:normal;font-size:clamp(14px,3.8vw,19px);line-height:1.08}.site-header .brand-words em{white-space:normal;line-height:1.4}.site-header .menu-toggle{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.site-header .nav-links a{min-height:44px;display:flex;align-items:center}
+.hero{height:auto;min-height:620px;max-height:none}.hero-content{padding-top:clamp(105px,20vh,160px);padding-bottom:100px}.hero h1{font-size:clamp(35px,9.5vw,54px);overflow-wrap:break-word}
+.hero-actions .button,.hero-actions .button-outline-light{max-width:none;min-width:0;width:100%;min-height:48px;justify-content:center}
+.section{padding-top:58px;padding-bottom:58px}.section-heading h2,.story-copy h2,.location-copy h2,.interest-intro h2,.faq-layout h2{font-size:clamp(32px,8.5vw,44px);overflow-wrap:break-word}
+.story-layout{gap:26px}.story-visual>img{height:clamp(250px,75vw,390px)}.villa-details{padding:28px 20px}.villa-details h3{font-size:clamp(29px,8vw,39px)}.plan-stage{min-height:0}.plan-stage img{height:auto;max-height:480px;object-fit:contain}
+.architecture-section{height:auto;min-height:520px}.architecture-panel{margin:100px 18px 38px}.architecture-panel h2{font-size:clamp(33px,9vw,45px)}
+.gallery-grid.gallery-grid--two{grid-template-rows:minmax(245px,80vw) minmax(210px,67vw)}.location-map .gallery-button{height:clamp(230px,70vw,350px)}
+.interior-preview-layout .interior-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.interior-preview-card img{height:clamp(90px,28vw,130px)}.interior-featured img{height:clamp(195px,59vw,285px)}
+.form-card{padding:26px 18px}.form-grid{gap:16px}.field input,.field select,.field textarea{font-size:16px;max-width:100%;min-height:44px}.form-card button[type="submit"]{min-height:48px}.footer-main{gap:30px 15px}
+}
+@media(max-width:390px){.shell{width:calc(100% - 28px)}.site-header .brand-mark,.site-header.scrolled .brand-mark{width:34px;height:34px}.site-header .brand-words strong{font-size:13px}.site-header .brand-words em{font-size:5.5px}.site-header .menu-toggle{min-width:44px;padding:7px}.hero h1{font-size:clamp(33px,9.2vw,38px)}}
