@@ -1,4 +1,4 @@
-# Villas de Caguas Real · Sitio preparado para Vercel
+# Caguas Real Villas · Sitio preparado para Vercel
 
 **Fecha:** 13 de octubre de 2026  
 **Idioma:** Español de Puerto Rico  
@@ -19,7 +19,7 @@
 
 ## IMPORTANTE ANTES DE PUBLICAR
 
-1. **Confirmar el nombre final** y autorización del promotor para usar el nombre "Villas de Caguas Real".
+1. **Confirmar el nombre final** y autorización del promotor para usar el nombre "Caguas Real Villas".
 2. **Confirmar número y dimensiones de unidades, amenidades, acceso al campo de golf y piscina, precio, estatus legal y disponibilidad**. Nada de eso se garantiza en la web.
 3. **Aprobar el aviso de privacidad:** ahora incluye recordatorios para identificar la razón social, el correo y un proceso de solicitudes de los interesados. **No lanzar una campaña pública de captación de leads antes de completar esta revisión.**
 4. **Activar una opción de almacenamiento:** [Google Sheets mediante Apps Script](integrations/google-sheets/SETUP.md) o Upstash Redis. Hasta que una esté configurada, el formulario muestra indisponibilidad y no anuncia registros exitosos.
@@ -29,7 +29,7 @@
 
 ## Registro en Google Sheets
 
-La hoja de destino es [Villas de Caguas Real — Registros de interesados](https://docs.google.com/spreadsheets/d/1PUq7gu7oe7feUuZWo7j8rBeDFF-J6TIiqyLknIURGyA/edit). Para activar los envíos, realiza el despliegue de Apps Script y configura `GOOGLE_SHEETS_WEBHOOK_URL` y `GOOGLE_SHEETS_WEBHOOK_SECRET` en **Production** de Vercel según [SETUP.md](integrations/google-sheets/SETUP.md). Los visitantes no tienen acceso a la hoja. El backend confirma cada escritura antes de mostrar el mensaje de registro exitoso. Si Redis también existe, conserva una copia para `/admin`.
+La hoja de destino es [Caguas Real Villas — Registros de interesados](https://docs.google.com/spreadsheets/d/1PUq7gu7oe7feUuZWo7j8rBeDFF-J6TIiqyLknIURGyA/edit). Para activar los envíos, realiza el despliegue de Apps Script y configura `GOOGLE_SHEETS_WEBHOOK_URL` y `GOOGLE_SHEETS_WEBHOOK_SECRET` en **Production** de Vercel según [SETUP.md](integrations/google-sheets/SETUP.md). Los visitantes no tienen acceso a la hoja. El backend confirma cada escritura antes de mostrar el mensaje de registro exitoso. Si Redis también existe, conserva una copia para `/admin`.
 
 ## Publicar en Vercel (línea de comandos)
 
@@ -81,7 +81,7 @@ Las fotografías del desarrollo original (incluyendo piscina, golf y canchas) no
 
 ### Dominio sugerido
 
-`VillasDeCaguasReal.com` **sujeto a comprobar disponibilidad, autorización de marca y compra del dominio**. No se ha adquirido ni vinculado ningún dominio.
+`CaguasRealVillas.com` **sujeto a comprobar disponibilidad, autorización de marca y compra del dominio**. No se ha adquirido ni vinculado ningún dominio.
 
 ## Revisión visual premium · 13 de octubre de 2026
 

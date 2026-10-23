@@ -36,7 +36,7 @@ function res() {return {code:200,headers:{},setHeader(k,v){this.headers[k]=v;ret
 test('Siete fotografías e imágenes y secciones requeridas en sitio',()=>{
  const root=resolve(import.meta.dirname,'..');
  const html=readFileSync(resolve(root,'index.html'),'utf8');
- assert.match(html,/Villas de Caguas Real/i);
+ assert.match(html,/Caguas Real Villas/i);
  assert.match(html,/prequalify\.vigpr\.com\/\?lang=es/);
  assert.match(html,/id="lead-form"/);
  assert.match(html,/id="success-panel"/);

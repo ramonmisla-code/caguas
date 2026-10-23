@@ -1,5 +1,5 @@
 /**
- * Vincular este código a la hoja "Villas de Caguas Real — Registros de interesados".
+ * Vincular este código a la hoja "Caguas Real Villas — Registros de interesados".
  * Extensiones > Apps Script > Código.gs.
  * En Configuración del proyecto > Propiedades de secuencia de comandos,
  * crear WEBHOOK_SECRET (mínimo 32 caracteres aleatorios).
