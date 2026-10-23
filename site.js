@@ -53,6 +53,21 @@
     'vista-aerea-desarrollo': ['vista-aerea-desarrollo.webp', 'Vista aérea ilustrativa del desarrollo existente.'],
     'ubicacion-proyecto': ['ubicacion-proyecto.webp', 'Perímetro ilustrativo del terreno propuesto.']
   };
+  // Usar la nueva imagen del área propuesta cuando ya esté disponible en assets.
+  // Hasta entonces conservar la imagen publicada para evitar contenido roto.
+  const proposedArea = document.querySelector('.location-map img[data-proposed-area]');
+  if (proposedArea) {
+    const imagePath = proposedArea.dataset.proposedArea;
+    const candidate = new Image();
+    candidate.onload = () => {
+      if (!candidate.naturalWidth) return;
+      proposedArea.src = imagePath;
+      media['ubicacion-proyecto'] = [imagePath.split('/').pop(), 'Imagen ilustrativa del área propuesta para Villas de Caguas Real.'];
+    };
+    candidate.onerror = () => { /* Mantener la imagen anterior mientras el archivo no exista. */ };
+    candidate.src = imagePath;
+  }
+
   const lightbox = $('#lightbox');
   document.querySelectorAll('[data-lightbox]').forEach(el => el.addEventListener('click', () => {
     const entry = media[el.dataset.lightbox];
