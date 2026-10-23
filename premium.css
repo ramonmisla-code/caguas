@@ -188,3 +188,14 @@ html{scroll-padding-top:76px}body{overflow-x:clip}.shell{width:calc(100% - 32px)
   .hero-premium h1{font-size:clamp(34px,9vw,48px)!important;line-height:1.14!important}
   .hero-premium .hero-content>p{font-size:14px!important;line-height:1.7!important}
 }
+
+/* Mobile: remove decorative arrow glyphs throughout all calls to action. */
+@media(max-width:700px){
+  .nav-cta span[aria-hidden="true"],
+  .button span[aria-hidden="true"],
+  .text-link span[aria-hidden="true"],
+  .zoom-link span[aria-hidden="true"],
+  .neighborhood-card-body a span[aria-hidden="true"],
+  .gallery-zoom{display:none!important}
+  .gallery-button::before,.gallery-button::after{pointer-events:none}
+}
