@@ -90,14 +90,6 @@
 .amenity-extra-card small{display:block;font:normal 10px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#738078;margin-top:5px}
 @media(max-width:700px){.amenity-extra-grid{grid-template-columns:1fr}.amenity-extra-card img{height:210px}}
 
-/* Fotografía complementaria de fachada/exterior */
-.extra-exterior[hidden]{display:none!important}
-.extra-exterior{background:#f5f3ee;padding:30px max(calc((100% - 1050px)/2),24px) 42px}
-.extra-exterior figure{margin:0;max-width:700px}
-.extra-exterior img{display:block;width:100%;max-height:330px;object-fit:cover;background:#e9e6df}
-.extra-exterior figcaption{font:normal 20px Georgia,serif;color:#263c31;margin-top:12px}
-.extra-exterior figcaption small{display:block;font:10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#768178;margin-top:5px}
-@media(max-width:700px){.extra-exterior{padding:24px 18px 34px}.extra-exterior img{max-height:240px}}
 
 /* Avisos legales discretos en el pie de página */
 .footer-legal{border-top:1px solid rgba(199,163,106,.44);padding-top:29px;padding-bottom:28px;margin-top:36px}
