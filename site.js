@@ -74,6 +74,20 @@
     check.src = img.dataset.interiorSrc;
   });
 
+  // Mostrar únicamente fotografías de amenidades que existan en assets.
+  const amenityExtra = $('#amenity-extra');
+  amenityExtra?.querySelectorAll('[data-amenity-src]').forEach(img => {
+    const check = new Image();
+    check.onload = () => {
+      if (!check.naturalWidth) return;
+      img.src = img.dataset.amenitySrc;
+      img.closest('.amenity-extra-card').hidden = false;
+      amenityExtra.hidden = false;
+    };
+    check.onerror = () => {};
+    check.src = img.dataset.amenitySrc;
+  });
+
   const media = {
     'plano-villa': ['plano-villa.webp', 'Planta arquitectónica conceptual: unidades tipo espejo.'],
     'piscina-caguas-real': ['piscina-caguas-real.webp', 'Piscina del desarrollo existente. Acceso no confirmado para las nuevas villas.'],

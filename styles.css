@@ -76,3 +76,16 @@
 @media(max-width:900px){.interior-preview-layout{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:17px}.interior-preview-layout .interior-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.interior-featured img{height:275px}}
 @media(max-width:700px){.interior-preview-layout{grid-template-columns:1fr}.interior-preview-layout .interior-preview-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 9px}.interior-preview-card img{height:90px}.interior-featured{grid-row:1}.interior-featured img{height:clamp(190px,57vw,290px)}}
 @media(max-width:390px){.interior-preview-layout .interior-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Fotografías adicionales de amenidades existentes */
+.amenity-extra[hidden],.amenity-extra-card[hidden]{display:none!important}
+.amenity-extra{margin-top:28px}
+.amenity-extra-title{margin-bottom:15px}
+.amenity-extra-title span{display:block;color:#a78b62;font-size:10px;font-weight:700;letter-spacing:.16em}
+.amenity-extra-title p{font:normal 22px Georgia,serif;color:#243d32;margin-top:9px}
+.amenity-extra-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;max-width:800px}
+.amenity-extra-card{margin:0;min-width:0}
+.amenity-extra-card img{display:block;width:100%;height:220px;object-fit:cover;background:#e8e6dd}
+.amenity-extra-card figcaption{font:normal 18px Georgia,serif;color:#263d32;margin-top:10px}
+.amenity-extra-card small{display:block;font:normal 10px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#738078;margin-top:5px}
+@media(max-width:700px){.amenity-extra-grid{grid-template-columns:1fr}.amenity-extra-card img{height:210px}}
