@@ -123,7 +123,6 @@
   const media = {
     'plano-villa': ['plano-villa.webp', 'Planta arquitectónica conceptual: unidades tipo espejo.'],
     'piscina-caguas-real': ['piscina-caguas-real.webp', 'Piscina del desarrollo existente. Acceso no confirmado para las nuevas villas.'],
-    'amenidades-caguas-real': ['amenidades-caguas-real.webp', 'Instalaciones del desarrollo existente. Acceso sujeto a confirmación.'],
     'vista-aerea-desarrollo': ['vista-aerea-desarrollo.webp', 'Vista aérea ilustrativa del desarrollo existente.'],
     'ubicacion-proyecto': ["ÁREA PROPUESTA · PERÍMETRO ILUSTRATIVO.jpg", 'Área propuesta y perímetro ilustrativo del terreno.']
   };

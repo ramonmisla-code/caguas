@@ -100,3 +100,14 @@ h1 em,h2 em,h3 em{font-family:'Playfair Display',Georgia,serif;font-weight:400}
   .hero-premium .hero-actions .button,
   .hero-premium .hero-actions .button-outline-light{width:246px;min-width:246px}
 }
+
+/* Galería del entorno con dos fotografías, sin huecos vacíos */
+.gallery-grid.gallery-grid--two{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,450px);gap:23px}
+.gallery-grid--two .gallery-feature{grid-row:auto}
+.gallery-grid--two figure{min-width:0;min-height:0}
+@media(max-width:700px){
+  .gallery-grid.gallery-grid--two{grid-template-columns:1fr;grid-template-rows:340px 290px;gap:16px}
+}
+@media(max-width:390px){
+  .gallery-grid.gallery-grid--two{grid-template-rows:310px 260px}
+}
