@@ -18,7 +18,7 @@ function legitimateOrigin(req) {
 async function notifySales(lead) {
   const { RESEND_API_KEY, SALES_NOTIFICATION_EMAIL, RESEND_FROM_EMAIL } = process.env;
   if (!RESEND_API_KEY || !SALES_NOTIFICATION_EMAIL || !RESEND_FROM_EMAIL) return;
-  const details = `Nuevo interesado en Villas de Caguas Real\n\nNombre: ${lead.fullName}\nTeléfono: ${lead.phone}\nEmail: ${lead.email}\nMunicipio: ${lead.municipality}\nContacto preferido: ${lead.contactPreference}\nPlazo de compra: ${lead.buyingTimeline}\nNecesita financiamiento: ${lead.needsFinancing}\nFuente: ${lead.tracking.utm_source || 'No indicada'}\nConsentimiento promocional: ${lead.marketingConsent ? 'Sí' : 'No'}\n\nComentarios: ${lead.comments}\n\nRevisa todos los prospectos en /admin.`;
+  const details = `Nuevo interesado en Villas de Caguas Real\n\nNombre: ${lead.fullName}\nTeléfono: ${lead.phone}\nEmail: ${lead.email}\nMunicipio: ${lead.municipality}\nContacto preferido: ${lead.contactPreference}\nPlazo de compra: ${lead.buyingTimeline}\nNecesita financiamiento: ${lead.needsFinancing}\nFuente: ${lead.tracking.utm_source || 'No indicada'}\nConsentimiento promocional: ${lead.marketingConsent ? 'Sí' : 'No'}\n\nComentarios: ${lead.comments}\n\nConsulta los prospectos en Google Sheets (o en /admin si también está configurado Redis).`;
   try {
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
