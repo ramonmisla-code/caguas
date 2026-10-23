@@ -15,3 +15,10 @@
   .site-header .language-switch button{font-size:13px;padding:12px 10px}
 }
 @media(max-width:390px){.privacy-header{padding:18px 14px}.privacy-header>a{font-size:12px}.privacy-header .language-switch button{padding:10px 4px}}
+
+.admin-header-actions{display:flex;align-items:center;gap:26px}
+.admin-header .language-switch{color:#fff}
+@media(max-width:570px){
+  .admin-header .head-inner{flex-wrap:wrap;padding:14px 0;gap:10px}
+  .admin-header-actions{gap:12px;width:100%;justify-content:space-between}
+}
