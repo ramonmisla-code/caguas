@@ -21,6 +21,38 @@
   }));
   $('#year').textContent = new Date().getFullYear();
 
+  // Explorador del entorno: selector por categorías, navegación por teclado y paneles accesibles.
+  const neighborhoodTabs = [...document.querySelectorAll('[data-neighborhood-tab]')];
+  const neighborhoodPanels = [...document.querySelectorAll('[data-neighborhood-panel]')];
+  function selectNeighborhood(id, shouldFocus = false) {
+    const selectedTab = neighborhoodTabs.find(tab => tab.dataset.neighborhoodTab === id);
+    if (!selectedTab) return;
+    neighborhoodTabs.forEach(tab => {
+      const selected = tab === selectedTab;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+    });
+    neighborhoodPanels.forEach(panel => {
+      panel.hidden = panel.dataset.neighborhoodPanel !== id;
+    });
+    if (shouldFocus) selectedTab.focus();
+  }
+  neighborhoodTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectNeighborhood(tab.dataset.neighborhoodTab));
+    tab.addEventListener('keydown', event => {
+      const key = event.key;
+      const isNavigation = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End'].includes(key);
+      if (!isNavigation) return;
+      event.preventDefault();
+      let next = index;
+      if (key === 'Home') next = 0;
+      else if (key === 'End') next = neighborhoodTabs.length - 1;
+      else if (key === 'ArrowDown' || key === 'ArrowRight') next = (index + 1) % neighborhoodTabs.length;
+      else next = (index - 1 + neighborhoodTabs.length) % neighborhoodTabs.length;
+      selectNeighborhood(neighborhoodTabs[next].dataset.neighborhoodTab, true);
+    });
+  });
+
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries, obs) => {
