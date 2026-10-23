@@ -31,7 +31,7 @@ test('All Spanish public body text segments have an English equivalent', () => {
     'Caguas Real Golf &amp; Country Club','Caguas Real Villas',
     'Four Points by Sheraton Caguas Real','SOCA Restaurant','Marcelo Restaurant',
     'Santa Olaya Shopping Village','Shops at Caguas','Hospital Menonita de Caguas','VIG',
-    'VIG Mortgage'
+    'VIG Mortgage', '×'
   ]);
   for (const page of ['index.html', 'privacidad.html', 'admin.html']) {
     const html = source(page).replace(/<style>[\s\S]*?<\/style>/g,'')
