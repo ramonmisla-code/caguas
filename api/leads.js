@@ -1,4 +1,5 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
+import { hasGoogleSheets, appendGoogleSheetLead } from '../lib/google-sheets.js';
 import { redis, pipeline, hasDatabase, leadKey, LEADS_INDEX, getJsonBody, enforceRateLimit, rejectMethod, databaseError } from '../lib/redis.js';
 
 const allowedContact = new Set(['', 'WhatsApp', 'Llamada', 'Email']);
@@ -27,10 +28,22 @@ async function notifySales(lead) {
     });
   } catch { /* El correo es opcional. El lead ya quedó guardado. */ }
 }
+const rateBuckets = new Map();
+function limitWithoutRedis(req) {
+  const raw = String(req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown').split(',')[0];
+  const hash = createHash('sha256').update(raw).digest('hex').slice(0, 26);
+  const now = Date.now();
+  for (const [key, bucket] of rateBuckets) if (now - bucket.start > 3600000) rateBuckets.delete(key);
+  const bucket = rateBuckets.get(hash) || { start: now, count: 0 };
+  if (rateBuckets.size >= 5000 && !rateBuckets.has(hash)) return false;
+  bucket.count += 1;
+  rateBuckets.set(hash, bucket);
+  return bucket.count <= 8;
+}
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return rejectMethod(res);
-  if (!hasDatabase()) return databaseError(res, new Error('DATABASE_NOT_CONFIGURED'));
+  if (!hasDatabase() && !hasGoogleSheets()) return databaseError(res, new Error('DATABASE_NOT_CONFIGURED'));
   if (!legitimateOrigin(req)) return res.status(403).json({ ok: false, message: 'Solicitud no autorizada.' });
   let data;
   try { data = getJsonBody(req); } catch { return res.status(400).json({ ok: false, message: 'Solicitud no válida.' }); }
@@ -63,13 +76,36 @@ export default async function handler(req, res) {
     }
   };
   try {
-    if (!await enforceRateLimit(req, 'register', 8)) return res.status(429).json({ ok: false, message: 'Demasiados intentos. Intenta nuevamente en una hora.' });
-    const results = await pipeline([
-      ['SET', leadKey(id), JSON.stringify(lead)],
-      ['ZADD', LEADS_INDEX, Date.now(), id]
-    ]);
-    if (results.length !== 2) throw new Error('INCOMPLETE_WRITE');
-    // Si se configuró Resend, enviar alerta sin afectar el registro ya guardado.
+    // Redis permite limitar envíos por IP. Con Sheets solo, se aplica un límite
+    // temporal por instancia (para campañas grandes, configurar Redis/Turnstile).
+    if (hasDatabase()) {
+      if (!await enforceRateLimit(req, 'register', 8))
+        return res.status(429).json({ ok: false, message: 'Demasiados intentos. Intenta nuevamente en una hora.' });
+    } else if (!limitWithoutRedis(req)) {
+      return res.status(429).json({ ok: false, message: 'Demasiados intentos. Intenta nuevamente más tarde.' });
+    }
+    if (hasGoogleSheets()) {
+      // Confirmar la escritura real ANTES de decirle al visitante que se registró.
+      await appendGoogleSheetLead(lead);
+      if (hasDatabase()) {
+        try {
+          await pipeline([
+            ['SET', leadKey(id), JSON.stringify(lead)],
+            ['ZADD', LEADS_INDEX, Date.now(), id]
+          ]);
+        } catch {
+          // La hoja sigue siendo fuente de verdad: el registro ya fue confirmado.
+          console.error('El respaldo Redis falló después de confirmar el registro en Sheets.');
+        }
+      }
+    } else {
+      // Compatibilidad con los proyectos que siguen usando únicamente Redis.
+      const results = await pipeline([
+        ['SET', leadKey(id), JSON.stringify(lead)],
+        ['ZADD', LEADS_INDEX, Date.now(), id]
+      ]);
+      if (results.length !== 2) throw new Error('INCOMPLETE_WRITE');
+    }
     await notifySales(lead);
     return res.status(201).json({ ok: true, id });
   } catch (error) { return databaseError(res, error); }
