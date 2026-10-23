@@ -1,0 +1,51 @@
+
+/* CAGUAS REAL VILLAS · NEIGHBORHOOD EDITORIAL SELECTOR */
+.neighborhood-section{background:#faf9f6;padding:114px 0 106px;border-top:1px solid #eae6dd}
+.neighborhood-intro{display:flex;justify-content:space-between;align-items:end;gap:50px;margin-bottom:55px}
+.neighborhood-intro .eyebrow{color:#958166}
+.neighborhood-intro h2{font:normal clamp(42px,4.8vw,66px)/1.13 'Playfair Display',Georgia,serif;letter-spacing:-.045em;margin:21px 0 0;color:var(--forest);max-width:760px}
+.neighborhood-intro h2 em{font-weight:400;color:var(--gold)}
+.neighborhood-intro>p{font-size:14px;color:#78817a;line-height:1.9;max-width:315px;padding-bottom:6px}
+.neighborhood-layout{display:grid;grid-template-columns:minmax(235px,.78fr) minmax(0,1.86fr);gap:58px;align-items:start}
+.neighborhood-tabs{display:flex;flex-direction:column;border-top:1px solid #dddcd4}
+.neighborhood-tab{appearance:none;border:0;border-bottom:1px solid #dddcd4;padding:22px 8px 22px 1px;min-height:73px;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;background:transparent;font:500 13px/1.5 'DM Sans',sans-serif;color:#9aa29c;transition:color .2s,padding-left .2s,background .2s}
+.neighborhood-tab span:last-child{font-size:11px;letter-spacing:.1em;color:#b2b8b1}
+.neighborhood-tab:is(:hover,:focus-visible){color:var(--forest);padding-left:10px;outline:none}
+.neighborhood-tab[aria-selected="true"]{color:var(--forest);font-weight:700;padding-left:10px;border-bottom-color:#b8a47c;background:linear-gradient(90deg,rgba(183,160,122,.12),transparent 65%)}
+.neighborhood-tab[aria-selected="true"] span:last-child{color:#aa8c5b}
+.neighborhood-content{min-width:0}
+.neighborhood-panel[hidden]{display:none!important}
+.neighborhood-panel{animation:neighborhood-reveal .25s ease both}
+@keyframes neighborhood-reveal{from{opacity:.35;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.neighborhood-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17px}
+.neighborhood-panel-heading span{font:600 10px/1.6 'DM Sans',sans-serif;letter-spacing:.17em;text-transform:uppercase;color:#b09870}
+.neighborhood-panel-heading p{font:400 12px/1.6 'DM Sans',sans-serif;color:#8a948d;text-align:right}
+.neighborhood-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.neighborhood-cards--single{grid-template-columns:minmax(0,370px)}
+.neighborhood-card{min-width:0}
+.neighborhood-card-media{height:212px;position:relative;overflow:hidden;background:#e2e3dc;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.neighborhood-card-media img{width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.82);transition:transform .5s ease}
+.neighborhood-card:hover .neighborhood-card-media img{transform:scale(1.035)}
+.neighborhood-card-media--graphic{background:linear-gradient(135deg,#e7e9de 0%,#cbd4c5 65%,#eff1e8 100%)}
+.neighborhood-card-media--graphic::before{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(255,255,255,.62);border-radius:50%;top:-80px;right:-60px}
+.neighborhood-card-media--graphic::after{content:"";position:absolute;width:170px;height:170px;border:1px solid rgba(42,78,63,.17);transform:rotate(27deg);left:-70px;bottom:-95px}
+.neighborhood-card-media--hotel{background:linear-gradient(135deg,#d9d9d1,#f0ebdf 53%,#b9c4b7)}
+.neighborhood-card-media--dining{background:linear-gradient(125deg,#d7c5ab,#f2ebdf 55%,#b5c3b8)}
+.neighborhood-card-media--shops{background:linear-gradient(140deg,#d7dfd2,#f4eee2 55%,#b2c7b7)}
+.neighborhood-card-media--health{background:linear-gradient(140deg,#d1dddc,#f4f4eb 57%,#b8c9bd)}
+.neighborhood-card-media--garden{background:linear-gradient(140deg,#b4c6ab,#e5e7d7 60%,#98b296)}
+.neighborhood-card-art{position:relative;z-index:1;display:flex;flex-direction:column;gap:9px;text-align:center;color:rgba(28,58,43,.78);padding:20px;pointer-events:none}
+.neighborhood-card-art strong{font:400 clamp(36px,4.2vw,60px)/1 Georgia,serif;letter-spacing:-.06em}
+.neighborhood-card-art span{font:600 10px/1.6 'DM Sans',sans-serif;letter-spacing:.19em;text-transform:uppercase}
+.neighborhood-card-media-label{position:absolute;left:15px;bottom:15px;background:rgba(16,43,34,.86);color:#f9f5ec;padding:8px 11px;letter-spacing:.13em;text-transform:uppercase;font-size:9px;font-weight:600}
+.neighborhood-card-body{padding:18px 0 3px}
+.neighborhood-card-body h3{font:400 21px/1.3 'Playfair Display',Georgia,serif;letter-spacing:-.02em;color:var(--forest);margin-bottom:8px}
+.neighborhood-card-body p{font-size:12px;line-height:1.8;color:#7a857e;min-height:43px}
+.neighborhood-card-body a{margin-top:13px;display:inline-flex;align-items:center;gap:14px;font:600 10px 'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#987d50;border-bottom:1px solid #c5b394;padding-bottom:8px}
+.neighborhood-card-body a:hover,.neighborhood-card-body a:focus-visible{color:#254536;border-color:#254536}
+.neighborhood-disclaimer{border-top:1px solid #dddcd4;padding-top:20px;margin-top:36px;font:400 11px/1.9 'DM Sans',sans-serif;color:#7f8880;max-width:990px}
+@media(max-width:1100px){.neighborhood-layout{grid-template-columns:minmax(200px,.78fr) minmax(0,1.86fr);gap:32px}.neighborhood-card-media{height:185px}}
+@media(max-width:900px){.neighborhood-section{padding:90px 0}.neighborhood-intro{gap:22px}.neighborhood-layout{grid-template-columns:1fr;gap:30px}.neighborhood-tabs{flex-direction:row;overflow-x:auto;scrollbar-width:thin;border-top:0;border-bottom:1px solid #dddcd4;gap:23px}.neighborhood-tab{flex:none;min-height:55px;border-bottom:2px solid transparent;padding:10px 3px;white-space:nowrap}.neighborhood-tab span:last-child{display:none}.neighborhood-tab[aria-selected="true"]{padding:10px 3px;border-bottom-color:#aa9064;background:none}.neighborhood-tab:is(:hover,:focus-visible){padding-left:3px}.neighborhood-card-media{height:225px}}
+@media(max-width:700px){.neighborhood-section{padding:74px 0}.neighborhood-intro{display:block;margin-bottom:28px}.neighborhood-intro h2{font-size:clamp(36px,9vw,48px)}.neighborhood-intro>p{margin-top:20px;font-size:13px}.neighborhood-layout{gap:21px}.neighborhood-tabs{gap:17px}.neighborhood-tab{font-size:11px}.neighborhood-cards{gap:15px}.neighborhood-card-media{height:155px}.neighborhood-card-art strong{font-size:37px}.neighborhood-card-art span{font-size:8px;letter-spacing:.1em}.neighborhood-card-body h3{font-size:17px}.neighborhood-card-body p{font-size:11px}.neighborhood-card-body a{font-size:9px}.neighborhood-disclaimer{margin-top:28px}}
+@media(max-width:480px){.neighborhood-cards{grid-template-columns:1fr}.neighborhood-card-media{height:210px}.neighborhood-card-body p{min-height:0}.neighborhood-card-body{padding-top:13px}.neighborhood-cards--single{grid-template-columns:1fr}.neighborhood-panel-heading{display:block}.neighborhood-panel-heading p{text-align:left;margin-top:6px}}
+@media(prefers-reduced-motion:reduce){.neighborhood-panel{animation:none}.neighborhood-card-media img{transition:none}}
