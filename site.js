@@ -31,6 +31,21 @@
     reveals.forEach(el => observer.observe(el));
   } else reveals.forEach(el => el.classList.add('visible'));
 
+  // Solo mostrar fotos interiores disponibles: evita imágenes rotas si están pendientes de subir.
+  // Las miniaturas no tienen enlaces ni controles de ampliación.
+  const interiorPreview = $('#interior-preview');
+  interiorPreview?.querySelectorAll('[data-interior-src]').forEach(img => {
+    const check = new Image();
+    check.onload = () => {
+      if (!check.naturalWidth) return;
+      img.src = img.dataset.interiorSrc;
+      img.closest('.interior-preview-card').hidden = false;
+      interiorPreview.hidden = false;
+    };
+    check.onerror = () => { /* Mantener oculta la foto no disponible. */ };
+    check.src = img.dataset.interiorSrc;
+  });
+
   const media = {
     'plano-villa': ['plano-villa.webp', 'Planta arquitectónica conceptual: unidades tipo espejo.'],
     'piscina-caguas-real': ['piscina-caguas-real.webp', 'Piscina del desarrollo existente. Acceso no confirmado para las nuevas villas.'],
