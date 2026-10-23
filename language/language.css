@@ -1,0 +1,17 @@
+
+/* ES / EN language switch — matches the brand's understated typography. */
+.site-header .nav-links{gap:clamp(12px,1.4vw,25px)}
+.language-switch{display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;color:inherit;flex-shrink:0}
+.language-switch button{border:0;background:transparent;color:inherit;font:600 10px/1 'DM Sans',Arial,sans-serif;letter-spacing:.09em;padding:10px 5px;opacity:.54;transition:opacity .2s,color .2s;cursor:pointer}
+.language-switch button.is-active,.language-switch button[aria-pressed="true"]{opacity:1;color:#e8c992}
+.language-switch button:hover,.language-switch button:focus-visible{opacity:1;outline-offset:3px}
+.language-switch>span{opacity:.4;font:400 11px 'DM Sans',Arial,sans-serif}
+.site-header .language-switch{border-left:1px solid rgba(255,255,255,.32);padding-left:10px;margin-left:-4px}
+.privacy-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.privacy-header .language-switch{color:#fff}
+@media(max-width:900px){
+  .site-header .nav-links{gap:0}
+  .site-header .language-switch{margin:19px 0 0;border-left:0;border-top:1px solid rgba(255,255,255,.25);padding:10px 0 0;justify-content:flex-start;align-self:stretch}
+  .site-header .language-switch button{font-size:13px;padding:12px 10px}
+}
+@media(max-width:390px){.privacy-header{padding:18px 14px}.privacy-header>a{font-size:12px}.privacy-header .language-switch button{padding:10px 4px}}
