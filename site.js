@@ -31,18 +31,46 @@
     reveals.forEach(el => observer.observe(el));
   } else reveals.forEach(el => el.classList.add('visible'));
 
-  // Solo mostrar fotos interiores disponibles: evita imágenes rotas si están pendientes de subir.
-  // Las miniaturas no tienen enlaces ni controles de ampliación.
+  // Galería con selección accesible y visor fijo (sin modal ni zoom).
   const interiorPreview = $('#interior-preview');
+  const featured = interiorPreview?.querySelector('.interior-featured');
+  const featuredImage = $('#interior-featured-image');
+  const featuredCaption = $('#interior-featured-caption');
+  let selectedInterior = null;
+  function selectInterior(card) {
+    if (!card || card.hidden) return;
+    const img = card.querySelector('[data-interior-src]');
+    if (!img || !img.src) return;
+    selectedInterior = card;
+    interiorPreview.querySelectorAll('.interior-preview-card').forEach(item => {
+      const active = item === card;
+      item.classList.toggle('is-selected', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
+    featuredImage.src = img.src;
+    featuredImage.alt = img.alt;
+    featuredCaption.textContent = card.querySelector('figcaption')?.textContent || '';
+    featured.hidden = false;
+  }
   interiorPreview?.querySelectorAll('[data-interior-src]').forEach(img => {
+    const card = img.closest('.interior-preview-card');
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-pressed', 'false');
+    card.setAttribute('aria-label', 'Ver ' + (card.querySelector('figcaption')?.textContent || 'imagen interior'));
+    card.addEventListener('click', () => selectInterior(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectInterior(card); }
+    });
     const check = new Image();
     check.onload = () => {
       if (!check.naturalWidth) return;
       img.src = img.dataset.interiorSrc;
-      img.closest('.interior-preview-card').hidden = false;
+      card.hidden = false;
       interiorPreview.hidden = false;
+      if (!selectedInterior) selectInterior(card);
     };
-    check.onerror = () => { /* Mantener oculta la foto no disponible. */ };
+    check.onerror = () => {};
     check.src = img.dataset.interiorSrc;
   });
 
