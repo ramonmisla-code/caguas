@@ -120,20 +120,6 @@
     check.src = img.dataset.amenitySrc;
   });
 
-  // La vista exterior solo se muestra cuando el archivo existe.
-  const extraExterior = $('#extra-exterior');
-  const exteriorImg = extraExterior?.querySelector('[data-exterior-src]');
-  if (exteriorImg) {
-    const candidate = new Image();
-    candidate.onload = () => {
-      if (!candidate.naturalWidth) return;
-      exteriorImg.src = exteriorImg.dataset.exteriorSrc;
-      extraExterior.hidden = false;
-    };
-    candidate.onerror = () => {};
-    candidate.src = exteriorImg.dataset.exteriorSrc;
-  }
-
   const media = {
     'plano-villa': ['plano-villa.webp', 'Planta arquitectónica conceptual: unidades tipo espejo.'],
     'piscina-caguas-real': ['piscina-caguas-real.webp', 'Piscina del desarrollo existente. Acceso no confirmado para las nuevas villas.'],
