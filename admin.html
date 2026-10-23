@@ -7,10 +7,16 @@
   <title>Panel de interesados | Caguas Real Villas</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/admin.css" />
+  <link rel="stylesheet" href="/language/language.css" />
+  <script defer src="/language/en-main.js"></script>
+  <script defer src="/language/en-privacy.js"></script>
+  <script defer src="/language/en-attributes.js"></script>
+  <script defer src="/language/en-admin.js"></script>
+  <script defer src="/language/switch.js"></script>
   <script defer src="/admin.js"></script>
 </head>
 <body>
-  <header class="admin-header"><div class="wrap head-inner"><a href="/" class="logo">VILLAS DE <b>CAGUAS REAL</b></a><a href="/" class="back">← Ver sitio web</a></div></header>
+  <header class="admin-header"><div class="wrap head-inner"><a href="/" class="logo">CAGUAS REAL <b>VILLAS</b></a><div class="admin-header-actions"><a href="/" class="back">← Ver sitio web</a><div class="language-switch" role="group" aria-label="Seleccionar idioma del sitio"><button type="button" data-language="es" aria-pressed="true" aria-label="Español">ES</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false" aria-label="English">EN</button></div></div></div></header>
   <main class="wrap admin-main">
     <div class="admin-heading"><p>GESTIÓN COMERCIAL · ACCESO PRIVADO</p><h1>Panel de interesados</h1><span>Contactos registrados, fuentes de campañas y seguimiento a VIG.</span></div>
     <section class="login-card" id="login-card"><h2>Ingresa tu clave administrativa</h2><p>Los registros de compradores solo pueden consultarse con una clave configurada de forma privada en Vercel.</p><form id="login-form"><label for="admin-key">Clave de acceso</label><input id="admin-key" type="password" autocomplete="current-password" required placeholder="Clave configurada en Vercel" /><button type="submit">Abrir panel →</button></form><div id="login-message" class="alert" role="status"></div></section>
