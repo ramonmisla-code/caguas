@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const $ = (q) => document.querySelector(q);
+  const tr = value => window.CRV_I18N?.t(value) || value;
   // No impedir el funcionamiento visual si el navegador restringe almacenamiento de sesión.
   const getSession = key => { try { return sessionStorage.getItem(key); } catch { return null; } };
   const setSession = (key, value) => { try { sessionStorage.setItem(key, value); } catch { /* sesión privada */ } };
@@ -13,7 +14,7 @@
   menuBtn?.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(isOpen));
-    menuBtn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    menuBtn.setAttribute('aria-label', tr(isOpen ? 'Cerrar menú' : 'Abrir menú'));
   });
   nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     nav.classList.remove('open');
@@ -89,7 +90,7 @@
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-pressed', 'false');
-    card.setAttribute('aria-label', 'Ver ' + (card.querySelector('figcaption')?.textContent || 'imagen interior'));
+    card.setAttribute('aria-label', tr('Ver') + ' ' + (card.querySelector('figcaption')?.textContent || tr('imagen interior')));
     card.addEventListener('click', () => selectInterior(card));
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectInterior(card); }
@@ -131,8 +132,8 @@
     const entry = media[el.dataset.lightbox];
     if (!entry || !lightbox?.showModal) return;
     $('#lightbox-img').src = '/assets/' + entry[0];
-    $('#lightbox-img').alt = entry[1];
-    $('#lightbox-caption').textContent = entry[1];
+    $('#lightbox-img').alt = tr(entry[1]);
+    $('#lightbox-caption').textContent = tr(entry[1]);
     lightbox.showModal();
   }));
   $('#lightbox-close')?.addEventListener('click', () => lightbox.close());
@@ -152,7 +153,8 @@
     if (urlParams.has(key)) setSession('vcr_' + key, val.slice(0, 150));
   });
   function showMessage(message, success = false) {
-    msg.textContent = message;
+    msg.dataset.lastMessage = message;
+    msg.textContent = tr(message);
     msg.classList.toggle('success', success);
   }
   function validate(obj) {
@@ -188,7 +190,7 @@
     if (error) { showMessage(error); return; }
     sending = true;
     submitBtn.disabled = true;
-    submitBtn.firstChild.textContent = 'Enviando registro… ';
+    submitBtn.firstChild.textContent = tr('Enviando registro…') + ' ';
     showMessage('');
     try {
       const response = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(obj) });
@@ -204,7 +206,29 @@
     } finally {
       sending = false;
       submitBtn.disabled = false;
-      submitBtn.firstChild.textContent = 'Quiero recibir información ';
+      submitBtn.firstChild.textContent = tr('Quiero recibir información') + ' ';
+    }
+  });
+  // Keep messages, gallery labels and menu controls synchronized when ES / EN changes.
+  window.addEventListener('crv:languagechange', () => {
+    interiorPreview?.querySelectorAll('.interior-preview-card').forEach(card => {
+      card.setAttribute('aria-label', tr('Ver') + ' ' + (card.querySelector('figcaption')?.textContent || tr('imagen interior')));
+    });
+    if (selectedInterior) {
+      featuredCaption.textContent = selectedInterior.querySelector('figcaption')?.textContent || '';
+      featuredImage.alt = selectedInterior.querySelector('img')?.alt || '';
+    }
+    const activeLightbox = document.querySelector('[data-lightbox].is-active');
+    if (activeLightbox && lightbox?.open) {
+      const entry = media[activeLightbox.dataset.lightbox];
+      if (entry) $('#lightbox-caption').textContent = tr(entry[1]);
+    }
+    if (menuBtn) menuBtn.setAttribute('aria-label', tr(nav?.classList.contains('open') ? 'Cerrar menú' : 'Abrir menú'));
+    if (submitBtn && !submitBtn.disabled) submitBtn.firstChild.textContent = tr('Quiero recibir información') + ' ';
+    if (sending) submitBtn.firstChild.textContent = tr('Enviando registro…') + ' ';
+    if (msg?.textContent) {
+      const spanishError = msg.dataset.lastMessage || '';
+      if (spanishError) msg.textContent = tr(spanishError);
     }
   });
   $('#vig-link')?.addEventListener('click', () => {
