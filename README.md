@@ -13,7 +13,7 @@
 - Captura automática de fuente de anuncio `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, referidor y página de entrada.
 - Registra el clic hacia [VIG Mortgage](https://prequalify.vigpr.com/?lang=es) **después** de haber guardado el prospecto. No significa solicitud hipotecaria terminada ni aprobada.
 - Panel comercial privado en `/admin`: búsqueda, filtros por etapa, edición de etapa, estadísticas, exportación CSV compatible con Excel.
-- Datos almacenados en **Upstash Redis REST** si se configuran las credenciales en Vercel. No se utiliza `localStorage` como almacenamiento de información de prospectos.
+- Registro directo en un **Google Sheet privado** mediante Apps Script protegido y configuración de Vercel. Ver [instrucciones para activar Google Sheets](integrations/google-sheets/SETUP.md). Upstash Redis es opcional como respaldo y para el panel comercial.
 - Posibilidad de recibir email por cada nuevo lead usando Resend (opcional).
 - Avisos de provisionalidad de precios, amenidades, planos y dimensiones.
 
@@ -22,9 +22,14 @@
 1. **Confirmar el nombre final** y autorización del promotor para usar el nombre "Villas de Caguas Real".
 2. **Confirmar número y dimensiones de unidades, amenidades, acceso al campo de golf y piscina, precio, estatus legal y disponibilidad**. Nada de eso se garantiza en la web.
 3. **Aprobar el aviso de privacidad:** ahora incluye recordatorios para identificar la razón social, el correo y un proceso de solicitudes de los interesados. **No lanzar una campaña pública de captación de leads antes de completar esta revisión.**
-4. Configurar el almacenamiento Upstash Redis: **sin ese paso el formulario NO registra** y presenta un error explícito; no redirige a VIG sin guardar el contacto.
+4. **Activar una opción de almacenamiento:** [Google Sheets mediante Apps Script](integrations/google-sheets/SETUP.md) o Upstash Redis. Hasta que una esté configurada, el formulario muestra indisponibilidad y no anuncia registros exitosos.
 5. Definir la clave del panel de administración y conservarla en un gestor seguro de contraseñas.
 6. Verificar con VIG la autorización para usar su nombre/enlace comercialmente y cualquier identificación/revelación requerida por su marca o prácticas aplicables.
+
+
+## Registro en Google Sheets
+
+La hoja de destino es [Villas de Caguas Real — Registros de interesados](https://docs.google.com/spreadsheets/d/1PUq7gu7oe7feUuZWo7j8rBeDFF-J6TIiqyLknIURGyA/edit). Para activar los envíos, realiza el despliegue de Apps Script y configura `GOOGLE_SHEETS_WEBHOOK_URL` y `GOOGLE_SHEETS_WEBHOOK_SECRET` en **Production** de Vercel según [SETUP.md](integrations/google-sheets/SETUP.md). Los visitantes no tienen acceso a la hoja. El backend confirma cada escritura antes de mostrar el mensaje de registro exitoso. Si Redis también existe, conserva una copia para `/admin`.
 
 ## Publicar en Vercel (línea de comandos)
 
@@ -39,7 +44,7 @@
 
 5. Opcional, para alertas de email: configura las variables `RESEND_API_KEY`, `SALES_NOTIFICATION_EMAIL` y `RESEND_FROM_EMAIL`. La dirección remitente debe estar autorizada en Resend.
 6. Vuelve a publicar para cargar las variables: `npx vercel --prod`
-7. Abre `https://TU-PROYECTO.vercel.app/api/status` y confirma `"registrationEnabled": true`. Hasta que diga **true**, el formulario público no está listo.
+7. Abre `https://TU-PROYECTO.vercel.app/api/status` y confirma `"registrationEnabled": true` y `"storageMode": "google-sheets"` si activaste Sheets. Esto verifica variables, **no sustituye un envío de prueba real**.
 8. Prueba un registro real con datos de prueba. Luego revisa `https://TU-PROYECTO.vercel.app/admin`, utilizando la clave configurada.
 9. Revisa el botón hacia VIG, filtros, CSV y avisos legales antes de anunciar el proyecto.
 
@@ -53,7 +58,7 @@ Crea una base Redis en [Upstash](https://upstash.com/) o desde la integración c
 
 ### Aviso técnico de administración
 
-El panel utiliza una clave compartida de administración (`ADMIN_ACCESS_KEY`) enviada únicamente a endpoints HTTPS. No guardes esa clave en código público ni la compartas. Para un proyecto con varios vendedores se recomienda evolucionar a cuentas individuales, permisos y auditoría. La exportación actual devuelve hasta 2,000 leads recientes; en operaciones mayores conviene añadir paginación.
+Cuando solo está configurado Google Sheets, consulta los registros directamente en el Google Sheet: el panel `/admin` requiere Redis. El panel utiliza una clave compartida de administración (`ADMIN_ACCESS_KEY`) enviada únicamente a endpoints HTTPS. No guardes esa clave en código público ni la compartas. Para un proyecto con varios vendedores se recomienda evolucionar a cuentas individuales, permisos y auditoría. La exportación actual devuelve hasta 2,000 leads recientes; en operaciones mayores conviene añadir paginación.
 
 ## Archivos
 
